@@ -1,18 +1,26 @@
 import {useState} from 'react';
 
 const GlobalState = () => {
-    const [state, setState] = useState(
-        {
-            value: '',
-            list: []
-        }
-    );
+    /* state.list:
+        [{id: 1, todo: "", isCompleted: false}]
+    */
+    const [state, setState] = useState({
+        currentId: 0,
+        list: []
+    });
 
     const actions = (action) => {
         const {type, payload} = action;
         switch (type) {
-            case 'setState':
-                return setState(payload);
+            case 'readFromStorage':
+                return state;
+
+            case 'addTodo':
+                return setState({...state, currentId: state.currentId + 1, list: [...state.list, payload]});
+
+            case 'updateIsCompleted':
+                return setState({...state, ...state.currentId, list: [payload]});
+
             default:
                 return state;
         }
