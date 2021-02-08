@@ -19,7 +19,7 @@ const GlobalState = () => {
                 return setState({...state, currentId: state.currentId + 1, list: [...state.list, payload]});
 
             case 'updateIsCompleted':
-                return setState({...state, ...state.currentId, list: [payload]});
+                return setState({...state, list: payload});
 
             default:
                 return state;

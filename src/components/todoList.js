@@ -5,16 +5,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 const TodoList = () => {
     const {state, actions} = useContext(Context);
-    
-    useEffect((state) => {
-        console.log(state);
-    }, [state.list]);
 
     const onCompletedClick = (e) => {
-        const id = e.target.id;
+        const id = parseInt(e.target.id, 10);
         const itemIndex = state.list.findIndex(x => x.id === id);
-        itemIndex.isCompleted = true;
-        actions({type: 'updateIsCompleted', payload: {...state, list: [...state.list, itemIndex]}});
+        const newList = state.list;
+        newList[itemIndex].isCompleted = true;
+        return actions({type: 'updateIsCompleted', payload: {...state, list: newList}});
     }
 
     //apply "card" class only if list item(s) exist
