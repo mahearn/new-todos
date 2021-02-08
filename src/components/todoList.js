@@ -6,6 +6,10 @@ import 'bootstrap/dist/css/bootstrap.css';
 const TodoList = () => {
     const {state, actions} = useContext(Context);
 
+    useEffect((state) => {
+        console.log(state.list);
+    }, [state.list]);
+
     const onCompletedClick = (e) => {
         const id = parseInt(e.target.id, 10);
         const itemIndex = state.list.findIndex(x => x.id === id);
