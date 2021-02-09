@@ -19,8 +19,14 @@ const GlobalState = () => {
                 return setState({...state, currentId: state.currentId + 1, list: [...state.list, payload]});
 
             case 'updateIsCompleted':
-                return setState({...state, list: payload});
+                return setState(payload);
 
+            case 'deleteTodo':
+                const newList = state.list.filter(
+                    (x) => x.id !== payload
+                );
+                return setState({ ...state, list: newList });
+                
             default:
                 return state;
         }

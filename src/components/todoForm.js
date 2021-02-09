@@ -8,6 +8,7 @@ function TodoForm() {
     const onSubmitClick = (e) => {
         let id = state.currentId + 1;
         let input = document.querySelector('#todoInput');
+        if(!input.value || /^\s*$/.test(input.value)) { return; }
         actions({type: 'addTodo', payload: {id: id, todo: input.value, isCompleted: false}});
     }
 
